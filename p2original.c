@@ -1,51 +1,31 @@
-#include <stdio.h>
-#include<math.h>
-
-void input_line(float *x1,float *y1,float *x2,float *y2,float *x3,float *y3)
+#include<stdio.h> 
+void input_line(float*x1,float*y1,float*x2,float*y2,float*x3,float*y3)
 {
-  printf("Enter x1 y1 x2 y2 x3 y3  :\n"); 
-  scanf("%f %f %f %f %f %f",x1,y1,x2,y2,x3,y3);
-  
+  printf("enter the value of x1,y1,x2,y2,x3,y3\n");
+  scanf("%f%f%f%f%f%f",x1,y1,x2,y2,x3,y3);
 }
-int distance(float x1,float y1,float x2,float y2)
-{ 
-float a,b,area;
-  a=(y2-y1)*(y2-y1);
-  b=(x2-x1)*(x2-x1);
-  area=fsqrt(a+b);
-  return area;
-}
-
-int is_triangle(float *x1,float *y1,float *x2,float *y2,float *x3,float *y3)
+int is_triangle(float x1,float y1,float x2,float y2,float x3,float y3)
 {
-  int istriangle=-1;
-  float a,b,c;
-  a=distance(*x1,*y1,*x2,*y2);
-  b=distance(*x2,*y2,*x3,*y3);
-  c=distance(*x3,*y3,*x1,*y1);
-  if((a+b)>c && (b+c)>a && (c+a)>b)
+float area;
+  area=0.5*((x1*(y2-y3))*(x2*(y3-y1))*(x3*(y1-y2)));
+    return area;
+}
+void output(float x1,float y1,float x2,float y2,float x3,float y3,float area)
+{
+  if (area<=0)
   {
-    istriangle=1;
-  }
-  return istriangle;
-}
-
-void output(float *x1,float *y1,float *x2,float *y2,float *x3,float *y3,int istriangle)
-{
-  if(istriangle>0)
+    printf("the points %f,%f and %f,%f and %f,%f dosen't form a triangle\n",x1,y1,x2,y2,x3,y3);
+    }
+    else
   {
-    printf("it forms a triangle");
+    printf("the points %f,%f and %f,%f and %f,%f form a triangle\n",x1,y1,x2,y2,x3,y3);
+    }
   }
-  else 
-    printf("it does not forms a triangle");
-}
-
-int main()
+  int main()
 {
-  float x1,x2,x3,y1,y2,y3;
-  int result;
-  input_line(&x1,&y1,&x2,&y2,&x3,&y3);
-  result=is_triangle(&x1,&y1,&x2,&y2,&x3,&y3);
-  output(&x1,&y1,&x2,&y2,&x3,&y3,result);
+  float a,b,c,d,e,f,result;
+  input_line(&a,&b,&c,&d,&e,&f);
+  result=is_triangle(a,b,c,d,e,f);
+  output(a,b,c,d,e,f,result);
   return 0;
-}
+  }
