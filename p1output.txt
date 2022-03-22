@@ -1,4 +1,4 @@
- gcc -g p1original.c -lm; ./a.out;
+gcc -g p1original.c -lm; ./a.out;
 enter the values (x1,y1) and (x2,y2)
 1
 1
